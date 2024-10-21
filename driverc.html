@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Tracking - Passenger Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-box input {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .area {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .area:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .area h2 {
+            margin-top: 0;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .info {
+            margin-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #777;
+        }
+
+        .active .info {
+            max-height: 500px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="main.html" class="back-button">Back to Main</a>
+
+    <div class="container">
+        <h1>Passenger Information by Area</h1>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Search for an area...">
+        </div>
+
+        <div id="areas">
+
+            <!-- Avadi -->
+            <div class="area">
+                <h2>Avadi</h2>
+                <div class="info">
+                    <p>Kumaravelan - 9845672341</p>
+                    <p>Selvaraj - 9345876123</p>
+                </div>
+            </div>
+
+            <!-- Maduravoyal -->
+            <div class="area">
+                <h2>Maduravoyal</h2>
+                <div class="info">
+                    <p>Marimuthu - 9867543210</p>
+                    <p>Shanmugam - 9876542309</p>
+                </div>
+            </div>
+
+            <!-- West Mambalam -->
+            <div class="area">
+                <h2>West Mambalam</h2>
+                <div class="info">
+                    <p>Ramasamy - 9845098765</p>
+                    <p>Meenakshisundaram - 9445723485</p>
+                </div>
+            </div>
+
+            <!-- K.K. Nagar Depot -->
+            <div class="area">
+                <h2>K.K. Nagar Depot</h2>
+                <div class="info">
+                    <p>Gopinath - 9965123401</p>
+                    <p>Dhanasekar - 9887621340</p>
+                </div>
+            </div>
+
+            <!-- Red Hills -->
+            <div class="area">
+                <h2>Red Hills</h2>
+                <div class="info">
+                    <p>Manickam - 9786541234</p>
+                    <p>Venkatesan - 9945812765</p>
+                </div>
+            </div>
+
+            <!-- Moolakadai -->
+            <div class="area">
+                <h2>Moolakadai</h2>
+                <div class="info">
+                    <p>Arumugam - 9564871234</p>
+                    <p>Ganesan - 9876423109</p>
+                </div>
+            </div>
+
+            <!-- MKP Nagar -->
+            <div class="area">
+                <h2>MKP Nagar</h2>
+                <div class="info">
+                    <p>Raghavan - 9867541209</p>
+                    <p>Muthusamy - 9123456789</p>
+                </div>
+            </div>
+
+            <!-- Villiwakkam -->
+            <div class="area">
+                <h2>Villiwakkam</h2>
+                <div class="info">
+                    <p>Murugan - 9954672134</p>
+                    <p>Sivaraman - 9671234567</p>
+                </div>
+            </div>
+
+            <!-- Thaindadripet -->
+            <div class="area">
+                <h2>Thaindadripet</h2>
+                <div class="info">
+                    <p>Kandasamy - 9745123487</p>
+                    <p>Rajendran - 9847123650</p>
+                </div>
+            </div>
+
+            <!-- Thiruvottiyur -->
+            <div class="area">
+                <h2>Thiruvottiyur</h2>
+                <div class="info">
+                    <p>Thirunavukkarasu - 9898765432</p>
+                    <p>Sekar - 9534567890</p>
+                </div>
+            </div>
+
+            <!-- Royapuram -->
+            <div class="area">
+                <h2>Royapuram</h2>
+                <div class="info">
+                    <p>Sundaravel - 9845098712</p>
+                    <p>Paramasivan - 9654781234</p>
+                </div>
+            </div>
+
+            <!-- Tondayarpet -->
+            <div class="area">
+                <h2>Tondayarpet</h2>
+                <div class="info">
+                    <p>Shanmugam - 9765412309</p>
+                    <p>Aravind - 9456123487</p>
+                </div>
+            </div>
+
+            <!-- Broadway -->
+            <div class="area">
+                <h2>Broadway</h2>
+                <div class="info">
+                    <p>Paramasivam - 9874512034</p>
+                    <p>Elangovan - 9623457891</p>
+                </div>
+            </div>
+
+            <!-- Light House -->
+            <div class="area">
+                <h2>Light House</h2>
+                <div class="info">
+                    <p>Elangovan - 9823456712</p>
+                    <p>Anbazhagan - 9876234501</p>
+                </div>
+            </div>
+
+            <!-- Royapetta -->
+            <div class="area">
+                <h2>Royapetta</h2>
+                <div class="info">
+                    <p>Anbazhagan - 9987654321</p>
+                    <p>Ramarajan - 9876512345</p>
+                </div>
+            </div>
+
+            <!-- Oragadam -->
+            <div class="area">
+                <h2>Oragadam</h2>
+                <div class="info">
+                    <p>Vadivelu - 9843210456</p>
+                    <p>Ranganathan - 9654721034</p>
+                </div>
+            </div>
+
+            <!-- Chengalpet -->
+            <div class="area">
+                <h2>Chengalpet</h2>
+                <div class="info">
+                    <p>Ilango - 9876541023</p>
+                    <p>Muthukumar - 9543210765</p>
+                </div>
+            </div>
+
+            <!-- Asthinapuram -->
+            <div class="area">
+                <h2>Asthinapuram</h2>
+                <div class="info">
+                    <p>Natarajan - 9865210347</p>
+                    <p>Krishnan - 9321456789</p>
+                </div>
+            </div>
+
+            <!-- Chrompet -->
+            <div class="area">
+                <h2>Chrompet</h2>
+                <div class="info">
+                    <p>Vijayakumar - 9445210678</p>
+                    <p>Ravi - 9564732109</p>
+                </div>
+            </div>
+
+            <!-- Kotturpuram -->
+            <div class="area">
+                <h2>Kotturpuram</h2>
+                <div class="info">
+                    <p>Krishnamoorthy - 9445123456</p>
+                    <p>Thangavel - 9623458712</p>
+                </div>
+            </div>
+
+            <!-- Saidapet -->
+            <div class="area">
+                <h2>Saidapet</h2>
+                <div class="info">
+                    <p>Ramesh - 9876543210</p>
+                    <p>Karthik - 9743210987</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.area').forEach(area => {
+            area.addEventListener('click', () => {
+                area.classList.toggle('active');
+            });
+        });
+
+        document.getElementById('search').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.area').forEach(area => {
+                const areaName = area.querySelector('h2').textContent.toLowerCase();
+                if (areaName.includes(searchValue)) {
+                    area.style.display = 'block';
+                } else {
+                    area.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

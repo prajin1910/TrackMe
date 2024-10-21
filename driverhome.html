@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .container {
+            margin: 80px 20px 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fbf2f2;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dcdada;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #f3e9e9;
+        }
+        .popup, .location-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #888;
+            z-index: 1001;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .popup button, .location-popup button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .popup button:hover, .location-popup button:hover {
+            background-color: #333;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Track Me</div>
+    
+    <div class="container">
+        <h1>Location List</h1>
+        <ul id="locationList">
+            <li>Avadi</li>
+            <li>Maduravoyal</li>
+            <li>West Mambalam</li>
+            <li>K.K. Nagar Depot</li>
+            <li>Red Hills</li>
+            <li>Moolakadai</li>
+            <li>MKP Nagar</li>
+            <li>Villiwakkam</li>
+            <li>Thaindadripet</li>
+            <li>Thiruvottiyur</li>
+            <li>Royapuram</li>
+            <li>Tondayarpet</li>
+            <li>Broadway</li>
+            <li>Light House</li>
+            <li>Royapetta</li>
+            <li>Oragadam</li>
+            <li>Chengalpet</li>
+            <li>Asthinapuram</li>
+            <li>Chrompet</li>
+            <li>Tambaram Gate</li>
+            <li>Potheri</li>
+            <li>Perungalathur</li>
+            <li>Camp Road</li>
+            <li>Balaji Nagar</li>
+            <li>Kozhli Pannai</li>
+            <li>Chempakkam</li>
+            <li>Puthu Kovil</li>
+            <li>Medavakkam</li>
+            <li>Medawakkam Koot Road</li>
+            <li>Anagaputhur</li>
+            <li>Poonamallee</li>
+            <li>Porur</li>
+            <li>K.K. Nagar</li>
+            <li>Guindy</li>
+            <li>Velacherry Bypass</li>
+            <li>Tansi Nagar</li>
+            <li>Mogapair</li>
+            <li>Anna Nagar West</li>
+            <li>K-4 Police Station</li>
+            <li>Metha Nagar</li>
+            <li>Valluvar Kottam</li>
+            <li>Kaliappa Hospital</li>
+            <li>Kodampakkam (Five Lights)</li>
+            <li>Saidapet</li>
+            <li>Panagal Park</li>
+            <li>S.R.P</li>
+            <li>Karapakkam</li>
+            <li>N.G.O. Colony</li>
+            <li>Nanganallur</li>
+            <li>UTI Bank</li>
+            <li>Kumaran Theatre</li>
+            <li>Kelkattalai</li>
+            <li>Vellakal</li>
+            <li>Balaji Dental Hospital</li>
+            <li>Besant Nagar</li>
+            <li>Ambika Appalam</li>
+            <li>Thiruvanmiyar Signal</li>
+            <li>R.M Hospital</li>
+            <li>Kottivakkam</li>
+            <li>Kalpakkam</li>
+            <li>Anupuram</li>
+            <li>Thirpporur</li>
+        </ul>
+    </div>
+
+    <div id="popup" class="popup">
+        Turn on your location
+        <button onclick="activateLocation()">Turn On</button>
+    </div>
+
+    <div id="locationPopup" class="location-popup">
+        Location is activated
+        <button onclick="backToLogin()">Back to Login Page</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('#locationList li').forEach(function(item) {
+            item.addEventListener('click', function() {
+                showPopup();
+            });
+        });
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            popup.classList.add('fade-in');
+        }
+
+        function activateLocation() {
+            const popup = document.getElementById('popup');
+            const locationPopup = document.getElementById('locationPopup');
+            popup.style.display = 'none';
+            locationPopup.style.display = 'block';
+            locationPopup.classList.add('fade-in');
+        }
+
+        function backToLogin() {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

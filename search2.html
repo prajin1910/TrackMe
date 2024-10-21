@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bus Name</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #fff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .back-button, .close-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .search-bar {
+            flex: 1;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+        .list-item {
+            background-color: #fff;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .list-item:hover {
+            background-color: #f9f9f9;
+        }
+        .list-item h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .no-buses {
+            display: none;
+            padding: 15px;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <button id="backButton" class="back-button">&larr;</button>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search Bus Name" onkeyup="filterList()">
+            <button id="clearButton" class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <!-- Bus Name List -->
+    <div id="busList">
+        <div class="list-item"><h3>Avadi</h3></div>
+        <div class="list-item"><h3>Maduravoyal</h3></div>
+        <div class="list-item"><h3>West Mambalam</h3></div>
+        <div class="list-item"><h3>K.K.Nagar Depot</h3></div>
+        <div class="list-item"><h3>Red Hills</h3></div>
+        <div class="list-item"><h3>Moolakadai</h3></div>
+        <div class="list-item"><h3>MKP Nagar</h3></div>
+        <div class="list-item"><h3>Villiwakkam</h3></div>
+        <div class="list-item"><h3>Thaindadripet</h3></div>
+        <div class="list-item"><h3>Thiruvottiyur</h3></div>
+        <div class="list-item"><h3>Royapuram</h3></div>
+        <div class="list-item"><h3>Tondayarpet</h3></div>
+        <div class="list-item"><h3>Broadway</h3></div>
+        <div class="list-item"><h3>Light House</h3></div>
+        <div class="list-item"><h3>Royapetta</h3></div>
+        <div class="list-item"><h3>Oragadam</h3></div>
+        <div class="list-item"><h3>Chengalpet</h3></div>
+        <div class="list-item"><h3>Asthinapuram</h3></div>
+        <div class="list-item"><h3>Chrompet</h3></div>
+        <div class="list-item"><h3>Tambaram Gate</h3></div>
+        <div class="list-item"><h3>Potheri</h3></div>
+        <div class="list-item"><h3>Perungalathur</h3></div>
+        <div class="list-item"><h3>Camp Road</h3></div>
+        <div class="list-item"><h3>Balaji Nagar</h3></div>
+        <div class="list-item"><h3>Kozhli Pannai</h3></div>
+        <div class="list-item"><h3>Chempakkam</h3></div>
+        <div class="list-item"><h3>Puthu Kovil</h3></div>
+        <div class="list-item"><h3>Medavakkam</h3></div>
+        <div class="list-item"><h3>Medawakkam Koot Road</h3></div>
+        <div class="list-item"><h3>Anagaputhur</h3></div>
+        <div class="list-item"><h3>Poonamallee</h3></div>
+        <div class="list-item"><h3>Porur</h3></div>
+        <div class="list-item"><h3>K.K.Nagar</h3></div>
+        <div class="list-item"><h3>Guindy</h3></div>
+        <div class="list-item"><h3>Velacherry Bypass</h3></div>
+        <div class="list-item"><h3>Tansi Nagar</h3></div>
+        <div class="list-item"><h3>Mogapair</h3></div>
+        <div class="list-item"><h3>Anna Nagar West</h3></div>
+        <div class="list-item"><h3>K-4 Police Station</h3></div>
+        <div class="list-item"><h3>Metha Nagar</h3></div>
+        <div class="list-item"><h3>Valluvar Kottam</h3></div>
+        <div class="list-item"><h3>Kaliappa Hospital</h3></div>
+        <div class="list-item"><h3>Kodampakkam (Five Lights)</h3></div>
+        <div class="list-item"><h3>Saidapet</h3></div>
+        <div class="list-item"><h3>Panagal Park</h3></div>
+        <div class="list-item"><h3>S.R.P</h3></div>
+        <div class="list-item"><h3>Karapakkam</h3></div>
+        <div class="list-item"><h3>N.G.O. Colony</h3></div>
+        <div class="list-item"><h3>Nanganallur</h3></div>
+        <div class="list-item"><h3>UTI Bank</h3></div>
+        <div class="list-item"><h3>Kumaran Theatre</h3></div>
+        <div class="list-item"><h3>Kelkattalai</h3></div>
+        <div class="list-item"><h3>Vellakal</h3></div>
+        <div class="list-item"><h3>Balaji Dental Hospital</h3></div>
+        <div class="list-item"><h3>Besant Nagar</h3></div>
+        <div class="list-item"><h3>Ambika Appalam</h3></div>
+        <div class="list-item"><h3>Thiruvanmiyar Signal</h3></div>
+        <div class="list-item"><h3>R.M Hospital</h3></div>
+        <div class="list-item"><h3>Kottivakkam</h3></div>
+        <div class="list-item"><h3>Kalpakkam</h3></div>
+        <div class="list-item"><h3>Anupuram</h3></div>
+        <div class="list-item"><h3>Thirpporur</h3></div>
+    </div>
+
+        <!-- Continue with other list items as per your original code -->
+    </div>
+
+    <!-- No Buses Found Message -->
+    <div id="noBuses" class="no-buses">No buses found</div>
+
+    <script>
+        // Navigate to main.html when the back button is clicked
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'main.html';
+        });
+
+        // Clear the search input and reset the list when the clear button is clicked
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            filterList();
+        });
+
+        // Function to filter the bus name list based on the search input
+        function filterList() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const listItems = document.querySelectorAll('.list-item');
+            const noBusesMessage = document.getElementById('noBuses');
+
+            if (input === "") {
+                listItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                noBusesMessage.style.display = 'none';
+                return;
+            }
+
+            let hasVisibleItems = false;
+
+            listItems.forEach(item => {
+                const busName = item.textContent.toLowerCase();
+                if (busName.startsWith(input) || busName.includes(input)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (hasVisibleItems) {
+                noBusesMessage.style.display = 'none';
+            } else {
+                noBusesMessage.style.display = 'block';
+            }
+        }
+
+        // Event handler to navigate to avadi.html when "Avadi" is clicked
+        document.querySelectorAll('.list-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                if (this.textContent.trim() === 'Avadi') {
+                    window.location.href = 'avadi.html';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

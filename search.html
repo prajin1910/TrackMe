@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bus Name</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #fff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .back-button, .close-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .search-bar {
+            flex: 1;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+        .list-item {
+            background-color: #fff;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .list-item:hover {
+            background-color: #f9f9f9;
+        }
+        .list-item h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .no-buses {
+            display: none;
+            padding: 15px;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <button id="backButton" class="back-button">&larr;</button>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search Bus Name" onkeyup="filterList()">
+            <button id="clearButton" class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <!-- Bus Name List -->
+    <div id="busList">
+        <div class="list-item"><h3>Avadi</h3></div>
+        <div class="list-item"><h3>Maduravoyal</h3></div>
+        <div class="list-item"><h3>West Mambalam</h3></div>
+        <div class="list-item"><h3>K.K.Nagar Depot</h3></div>
+        <div class="list-item"><h3>Red Hills</h3></div>
+        <div class="list-item"><h3>Moolakadai</h3></div>
+        <div class="list-item"><h3>MKP Nagar</h3></div>
+        <div class="list-item"><h3>Villiwakkam</h3></div>
+        <div class="list-item"><h3>Thaindadripet</h3></div>
+        <div class="list-item"><h3>Thiruvottiyur</h3></div>
+        <div class="list-item"><h3>Royapuram</h3></div>
+        <div class="list-item"><h3>Tondayarpet</h3></div>
+        <div class="list-item"><h3>Broadway</h3></div>
+        <div class="list-item"><h3>Light House</h3></div>
+        <div class="list-item"><h3>Royapetta</h3></div>
+        <div class="list-item"><h3>Oragadam</h3></div>
+        <div class="list-item"><h3>Chengalpet</h3></div>
+        <div class="list-item"><h3>Asthinapuram</h3></div>
+        <div class="list-item"><h3>Chrompet</h3></div>
+        <div class="list-item"><h3>Tambaram Gate</h3></div>
+        <div class="list-item"><h3>Potheri</h3></div>
+        <div class="list-item"><h3>Perungalathur</h3></div>
+        <div class="list-item"><h3>Camp Road</h3></div>
+        <div class="list-item"><h3>Balaji Nagar</h3></div>
+        <div class="list-item"><h3>Kozhli Pannai</h3></div>
+        <div class="list-item"><h3>Chempakkam</h3></div>
+        <div class="list-item"><h3>Puthu Kovil</h3></div>
+        <div class="list-item"><h3>Medavakkam</h3></div>
+        <div class="list-item"><h3>Medawakkam Koot Road</h3></div>
+        <div class="list-item"><h3>Anagaputhur</h3></div>
+        <div class="list-item"><h3>Poonamallee</h3></div>
+        <div class="list-item"><h3>Porur</h3></div>
+        <div class="list-item"><h3>K.K.Nagar</h3></div>
+        <div class="list-item"><h3>Guindy</h3></div>
+        <div class="list-item"><h3>Velacherry Bypass</h3></div>
+        <div class="list-item"><h3>Tansi Nagar</h3></div>
+        <div class="list-item"><h3>Mogapair</h3></div>
+        <div class="list-item"><h3>Anna Nagar West</h3></div>
+        <div class="list-item"><h3>K-4 Police Station</h3></div>
+        <div class="list-item"><h3>Metha Nagar</h3></div>
+        <div class="list-item"><h3>Valluvar Kottam</h3></div>
+        <div class="list-item"><h3>Kaliappa Hospital</h3></div>
+        <div class="list-item"><h3>Kodampakkam (Five Lights)</h3></div>
+        <div class="list-item"><h3>Saidapet</h3></div>
+        <div class="list-item"><h3>Panagal Park</h3></div>
+        <div class="list-item"><h3>S.R.P</h3></div>
+        <div class="list-item"><h3>Karapakkam</h3></div>
+        <div class="list-item"><h3>N.G.O. Colony</h3></div>
+        <div class="list-item"><h3>Nanganallur</h3></div>
+        <div class="list-item"><h3>UTI Bank</h3></div>
+        <div class="list-item"><h3>Kumaran Theatre</h3></div>
+        <div class="list-item"><h3>Kelkattalai</h3></div>
+        <div class="list-item"><h3>Vellakal</h3></div>
+        <div class="list-item"><h3>Balaji Dental Hospital</h3></div>
+        <div class="list-item"><h3>Besant Nagar</h3></div>
+        <div class="list-item"><h3>Ambika Appalam</h3></div>
+        <div class="list-item"><h3>Thiruvanmiyar Signal</h3></div>
+        <div class="list-item"><h3>R.M Hospital</h3></div>
+        <div class="list-item"><h3>Kottivakkam</h3></div>
+        <div class="list-item"><h3>Kalpakkam</h3></div>
+        <div class="list-item"><h3>Anupuram</h3></div>
+        <div class="list-item"><h3>Thirpporur</h3></div>
+    </div>
+
+    <!-- No Buses Found Message -->
+    <div id="noBuses" class="no-buses">No buses found</div>
+
+    <script>
+        // Navigate to main.html when the back button is clicked
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'main.html';
+        });
+
+        // Clear the search input and reset the list when the clear button is clicked
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            filterList();
+        });
+
+        // Function to filter the bus name list based on the search input
+        function filterList() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const listItems = document.querySelectorAll('.list-item');
+            const noBusesMessage = document.getElementById('noBuses');
+
+            if (input === "") {
+                listItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                noBusesMessage.style.display = 'none';
+                return;
+            }
+
+            let hasVisibleItems = false;
+
+            listItems.forEach(item => {
+                const busName = item.textContent.toLowerCase();
+                if (busName.startsWith(input) || busName.includes(input)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (hasVisibleItems) {
+                noBusesMessage.style.display = 'none';
+            } else {
+                noBusesMessage.style.display = 'block';
+            }
+        }
+
+        // Event handlers to navigate to the respective pages when a bus name is clicked
+        document.querySelectorAll('.list-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                const busName = this.textContent.trim();
+
+                const pages = {
+                    'Avadi': 'avadi.html',
+                    'Maduravoyal': 'maduravoyal.html',
+                    'West Mambalam': 'west_mambalam.html',
+                    'K.K.Nagar Depot': 'kk_nagar_depot.html',
+                    'Red Hills': 'red_hills.html',
+                    'Moolakadai': 'moolakadai.html',
+                    'MKP Nagar': 'mkp_nagar.html',
+                    'Villiwakkam': 'villiwakkam.html',
+                    'Thaindadripet': 'thaindadripet.html',
+                    'Thiruvottiyur': 'thiruvottiyur.html',
+                    'Royapuram': 'royapuram.html',
+                    'Tondayarpet': 'tondayarpet.html',
+                    'Broadway': 'broadway.html',
+                    'Light House': 'light_house.html',
+                    'Royapetta': 'royapetta.html',
+                    'Oragadam': 'oragadam.html',
+                    'Chengalpet': 'chengalpet.html',
+                    'Asthinapuram': 'asthinapuram.html',
+                    'Chrompet': 'chrompet.html',
+                    'Tambaram Gate': 'tambaram_gate.html',
+                    'Potheri': 'potheri.html',
+                    'Perungalathur': 'perungalathur.html',
+                    'Camp Road': 'camp_road.html',
+                    'Balaji Nagar': 'balaji_nagar.html',
+                    'Kozhli Pannai': 'kozhli_pannai.html',
+                    'Chempakkam': 'chempakkam.html',
+                    'Puthu Kovil': 'puthu_kovil.html',
+                    'Medavakkam': 'medavakkam.html',
+                    'Medawakkam Koot Road': 'medawakkam_koot_road.html',
+                    'Anagaputhur': 'anagaputhur.html',
+                    'Poonamallee': 'poonamalle.html',
+                    'Porur': 'porur.html',
+                    'K.K.Nagar': 'kk_nagar.html',
+                    'Guindy': 'guindy.html',
+                    'Velacherry Bypass': 'velacherry_bypass.html',
+                    'Tansi Nagar': 'tansi_nagar.html',
+                    'Mogapair': 'mogapair.html',
+                    'Anna Nagar West': 'anna_nagar_west.html',
+                    'K-4 Police Station': 'k4_police_station.html',
+                    'Metha Nagar': 'metha_nagar.html',
+                    'Valluvar Kottam': 'valluvar_kottam.html',
+                    'Kaliappa Hospital': 'kaliappa_hospital.html',
+                    'Kodampakkam (Five Lights)': 'kodampakkam_five_lights.html',
+                    'Saidapet': 'saidapet.html',
+                    'Panagal Park': 'panagal_park.html',
+                    'S.R.P': 'srp.html',
+                    'Karapakkam': 'karapakkam.html',
+                    'N.G.O. Colony': 'ngo_colony.html',
+                    'Nanganallur': 'nanganallur.html',
+                    'UTI Bank': 'uti_bank.html',
+                    'Kumaran Theatre': 'kumaran_theatre.html',
+                    'Kelkattalai': 'kelkattalai.html',
+                    'Vellakal': 'vellakal.html',
+                    'Balaji Dental Hospital': 'balaji_dental_hospital.html',
+                    'Besant Nagar': 'besant_nagar.html',
+                    'Ambika Appalam': 'ambika_appalam.html',
+                    'Thiruvanmiyar Signal': 'thiruvanmiyar_signal.html',
+                    'R.M Hospital': 'rm_hospital.html',
+                    'Kottivakkam': 'kottivakkam.html',
+                    'Kalpakkam': 'kalpakkam.html',
+                    'Anupuram': 'anupuram.html',
+                    'Thirpporur': 'thirpporur.html'
+                };
+
+                const page = pages[busName];
+                if (page) {
+                    window.location.href = page;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

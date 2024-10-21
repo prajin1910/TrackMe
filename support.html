@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - TrackMe</title>
+    <link rel="icon" type="image/png" href="https://www.urlvoid.com/favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4; /* Light gray background */
+            color: #333;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #343a40;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000; /* Ensure navbar is above other content */
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 28px;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        .navbar-nav .nav-item {
+            display: inline-block;
+            margin: 0 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link {
+            color: #9a9da0;
+            font-size: 18px;
+            padding: 10px 20px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-item.active .nav-link {
+            text-decoration: underline;
+            color: #fff;
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 80px auto 20px; /* Adjust top margin to avoid overlap with navbar */
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .team-member {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #333; /* Light black background */
+            color: #fff; /* White text */
+            border-radius: 8px;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member h2 {
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .team-member p {
+            color: #ccc; /* Lighter gray text for contrast */
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 5px 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .social-links a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px 0;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            color: #333;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 10px; /* Adjust top positioning if needed */
+            font-size: 20px;
+            color: #fff;
+            background: #343a40;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #495057;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="back-btn" onclick="window.location.href='main.html'">&#8592; Back</button>
+        <a class="navbar-brand" href="#">TrackMe</a>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="container">
+        <h1>Support</h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h2>Prajin Kumar P</h2>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prajinkumar19/" target="_blank" class="fab fa-linkedin"></a>
+                    </div>
+                    <p>St. Joseph's Institute of Technology</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h2>Mohamed&nbsp;Hussain&nbsp;M</h2>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mohamedhussain18" target="_blank" class="fab fa-linkedin"></a>
+                    </div>
+                    <p>St. Joseph's Institute of Technology</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h2>Mohana Priya M</h2>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mohana-priya-m-119b91289" target="_blank" class="fab fa-linkedin"></a>
+                    </div>
+                    <p>St. Joseph's Institute of Technology</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="team-member">
+                    <h2>Pavithra S</h2>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/pavithra-s-10a8582b7" target="_blank" class="fab fa-linkedin"></a>
+                    </div>
+                    <p>St. Joseph's Institute of Technology</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 HoloTrackers - St. Joseph's Institute of Technology</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

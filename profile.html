@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackMe - Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            flex: 1;
+            margin-right: 75px;
+            text-align: center;
+        }
+        .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #007BFF;
+            display: flex;
+            align-items: center;
+        }
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .profile-pic {
+            margin-bottom: 20px;
+            align-self: center;
+        }
+        .profile-pic img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 30px; /* Increased space between sections */
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #888;
+        }
+        .form-group p {
+            font-size: 18px;
+            margin: 5px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+        .form-group input {
+            font-size: 18px;
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+            display: none;
+        }
+        .edit-btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            align-self: center;
+        }
+        .edit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <button class="back-button" onclick="window.location.href='main.html';">
+            <!-- Back arrow icon -->
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back
+        </button>
+        <h1>Profile - Info</h1>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="container">
+        <div class="profile-pic">
+            <img src="profile.png" alt="Profile Picture">
+        </div>
+        <div class="profile-name">Holo Trackers</div>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <p id="name-text">Holo Trackers</p>
+            <input type="text" id="name-input" value="Holo Trackers">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <p id="gender-text">Male</p>
+            <input type="text" id="gender-input" value="Male">
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <p id="dob-text">19 Oct 2004</p>
+            <input type="text" id="dob-input" value="19 Oct 2004">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Id</label>
+            <p id="email-text">mohamedhussain18820@gmail.com</p>
+            <input type="email" id="email-input" value="mohamedhussain18820@gmail.com">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <p id="phone-text">8825616170</p>
+            <input type="text" id="phone-input" value="8825616170">
+        </div>
+        
+        <button id="edit-btn" class="edit-btn">Edit</button>
+    </div>
+
+    <script>
+        const editBtn = document.getElementById('edit-btn');
+        
+        const nameText = document.getElementById('name-text');
+        const genderText = document.getElementById('gender-text');
+        const dobText = document.getElementById('dob-text');
+        const emailText = document.getElementById('email-text');
+        const phoneText = document.getElementById('phone-text');
+
+        const nameInput = document.getElementById('name-input');
+        const genderInput = document.getElementById('gender-input');
+        const dobInput = document.getElementById('dob-input');
+        const emailInput = document.getElementById('email-input');
+        const phoneInput = document.getElementById('phone-input');
+
+        let isEditing = false;
+
+        editBtn.addEventListener('click', () => {
+            if (isEditing) {
+                // Save changes
+                nameText.textContent = nameInput.value;
+                genderText.textContent = genderInput.value;
+                dobText.textContent = dobInput.value;
+                emailText.textContent = emailInput.value;
+                phoneText.textContent = phoneInput.value;
+
+                // Switch back to view mode
+                nameText.style.display = 'block';
+                genderText.style.display = 'block';
+                dobText.style.display = 'block';
+                emailText.style.display = 'block';
+                phoneText.style.display = 'block';
+
+                nameInput.style.display = 'none';
+                genderInput.style.display = 'none';
+                dobInput.style.display = 'none';
+                emailInput.style.display = 'none';
+                phoneInput.style.display = 'none';
+
+                editBtn.textContent = 'Edit';
+            } else {
+                // Switch to edit mode
+                nameText.style.display = 'none';
+                genderText.style.display = 'none';
+                dobText.style.display = 'none';
+                emailText.style.display = 'none';
+                phoneText.style.display = 'none';
+
+                nameInput.style.display = 'block';
+                genderInput.style.display = 'block';
+                dobInput.style.display = 'block';
+                emailInput.style.display = 'block';
+                phoneInput.style.display = 'block';
+
+                editBtn.textContent = 'Save';
+            }
+
+            isEditing = !isEditing;
+        });
+    </script>
+
+</body>
+</html>

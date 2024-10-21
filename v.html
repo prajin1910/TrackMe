@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Tracking Voice Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('background.jpg') no-repeat center center fixed; /* Add your background image URL here */
+            background-size: cover;
+        }
+
+        .voice-assistant-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            width: 90%;
+            max-width: 500px;
+            position: relative; /* For positioning the back button */
+        }
+
+        .voice-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .voice-button:hover {
+            background-color: #444;
+        }
+
+        #transcript, #response {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #response {
+            color: #000;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="voice-assistant-container">
+        <button class="back-button" onclick="window.location.href='main.html'">&larr;</button>
+        <button id="voiceAssistantButton" class="voice-button">
+            🎤 Ask Assistant
+        </button>
+        <p id="transcript">Start speaking, and I'll type what you say...</p>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        const button = document.getElementById('voiceAssistantButton');
+        const transcriptElement = document.getElementById('transcript');
+        const responseElement = document.getElementById('response');
+
+        button.addEventListener('click', () => {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+
+            recognition.onstart = () => {
+                button.textContent = 'Listening...';
+            };
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+                button.textContent = '🎤 Ask Assistant';
+            };
+
+            recognition.onresult = (event) => {
+                let finalTranscript = '';
+                let interimTranscript = '';
+                
+                for (let i = 0; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript;
+                        handleCommand(finalTranscript);
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+                
+                transcriptElement.textContent = interimTranscript || finalTranscript;
+            };
+
+            recognition.start();
+        });
+
+        function handleCommand(command) {
+            command = command.toLowerCase();
+            let response = '';
+
+            if (command.includes('where is my bus')) {
+                response = 'Your bus is currently 5 minutes away.';
+            } else if (command.includes('next bus')) {
+                response = 'The next bus is arriving in 10 minutes.';
+            } else if (command.includes('bus route')) {
+                response = 'The bus is on route 32, passing through Main Street and 5th Avenue.';
+            } else if (command.includes('current location')) {
+                response = 'Your bus is currently at Central Station.';
+            } else if (command.includes('eta') || command.includes('arrival time')) {
+                response = 'The estimated arrival time is 15 minutes.';
+            } else if (command.includes('delay')) {
+                response = 'There is a delay of approximately 5 minutes due to traffic.';
+            } else if (command.includes('cancelled bus')) {
+                response = 'Unfortunately, the bus has been cancelled due to technical issues.';
+            } else if (command.includes('thank you')) {
+                response = 'You\'re welcome! If you need anything else, just ask.';
+            } else if (command.includes('goodbye') || command.includes('bye')) {
+                response = 'Goodbye! Have a great day!';
+            } else if (command.includes('what\'s your name') || command.includes('what is your name')) {
+                response = 'I am your bus tracking assistant.';
+            } else if (command.includes('how are you')) {
+                response = 'I am just a program, but I\'m here to help you!';
+            } else if (command.includes('tell about Hussain') || command.includes('bye')) {
+                response = 'he is bad boyy thoongu moonji bad bad bad bad rowdy thadha';
+            } else if (command.includes('tell me a joke')) {
+                response = 'Why don\'t buses ever get lost? Because they always take the right route!';
+            } else if (command.includes('what is the time')) {
+                response = `The current time is ${new Date().toLocaleTimeString()}.`;
+            } else if (command.includes('what is the date')) {
+                response = `Today is ${new Date().toLocaleDateString()}.`;
+            } else if (command.includes('what is the weather')) {
+                response = 'The current weather is sunny with a temperature of 25°C.';
+            } else if (command.includes('news')) {
+                response = 'Here is the latest news: [Insert news content here].';
+            } else if (command.includes('set a reminder')) {
+                response = 'Sure, what would you like to set a reminder for?';
+            } else if (command.includes('traffic update')) {
+                response = 'There is heavy traffic on Main Street, expect delays.';
+            } else if (command.includes('how is the traffic')) {
+                response = 'The traffic is smooth on most routes, with minor delays on the highway.';
+            } else if (command.includes('play music')) {
+                response = 'I cannot play music directly, but you can use a music streaming service.';
+            } else if (command.includes('who made you')) {
+                response = 'I was created by a talented team of developers.';
+            } else if (command.includes('what can you do')) {
+                response = 'I can help you track buses, provide traffic updates, and answer general questions.';
+            } else if (command.includes('can you help me')) {
+                response = 'Of course! What do you need help with?';
+            } else if (command.includes('stop listening')) {
+                response = 'Okay, I\'ll stop listening. Let me know when you need me again.';
+                button.disabled = true;
+            }else if(command.includes('hello') || command.includes('hi')){
+                response='hello how can i assist you today?';
+            }else if(command.includes('good morning')){
+                respond='a very good morning ,how can i assist you today?';
+            }else if(command.includes('how can i go to ssn?') || command.includes('can you take me to ssn?') || command.includes('where is ssn?')){
+                respond='bus that takes to ssn is almost in your location ,within 10 minutes you can catch the bus';
+            }else if(command.includes('how can i go to saint joseph college') || command.includes('can you take me to saint joseph college?')){
+                respond='you are already in that location';
+                
+            }else if (command.includes('start listening')) {
+                response = 'I\'m here and ready to listen.';
+                button.disabled = false;
+            } else {
+                response = 'I\'m sorry, I didn\'t understand that. Could you please repeat?';
+            }
+
+            responseElement.textContent = response;
+            speakResponse(response);
+        }
+
+        function speakResponse(response) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(response);
+            synth.speak(utterance);
+        }
+    </script>
+</body>
+</html>

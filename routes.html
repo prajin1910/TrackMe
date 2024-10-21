@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Bus Routes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #000101;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .back-button-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+        .back-button {
+            padding: 5px 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .back-button:hover {
+            text-decoration: underline;
+        }
+        .back-arrow {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+        .routes-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .search-container {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .scrollable {
+            max-height: 500px;
+            overflow-y: auto;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="back-button-container">
+            <button class="back-button" onclick="goBack()">
+                <span class="back-arrow">←</span> Back
+            </button>
+        </div>
+        <div class="routes-title">Bus Routes Info</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for routes or starting points...">
+        </div>
+    </div>
+
+    <div class="scrollable">
+        <table id="busTable">
+            <thead>
+                <tr>
+                    <th>Route No.</th>
+                    <th>Starting Point</th>
+                    <th>Boarding Points & Timing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows here -->
+                <tr><td>1</td><td>Chennai Central</td><td>Periamet (6.05), Egmore (6.15), Nungambakkam (6.25), College Campus (7.15)</td></tr>
+                <tr><td>2</td><td>Adyar</td><td>Indira Nagar (6.10), Thiruvanmiyur (6.15), Adyar (6.20), College Campus (7.15)</td></tr>
+                <tr><td>3</td><td>Egmore</td><td>Parry's Corner (6.00), Egmore Railway Station (6.05), Nungambakkam (6.15), College Campus (7.15)</td></tr>
+                <tr><td>4</td><td>Mount Road</td><td>Mount Road (6.00), Teynampet (6.05), Nungambakkam (6.10), College Campus (7.15)</td></tr>
+                <tr><td>5</td><td>Velachery</td><td>Velachery (6.10), Pallikaranai (6.15), Tharamani (6.20), College Campus (7.15)</td></tr>
+                <tr><td>6</td><td>Anna Nagar</td><td>Anna Nagar (6.20), Koyambedu (6.25), Aminjikarai (6.30), College Campus (7.15)</td></tr>
+                <tr><td>7</td><td>Tambaram</td><td>Tambaram (6.30), Mudichur (6.32), Sembakkam (6.35), Irumbuliyur (6.40), College Campus (7.15)</td></tr>
+                <tr><td>8</td><td>Perambur</td><td>Perambur (6.15), Villivakkam (6.20), Tondiarpet (6.25), College Campus (7.15)</td></tr>
+                <tr><td>9</td><td>Sholinganallur</td><td>Sholinganallur (6.10), OMR (6.15), Thiruvanmiyur (6.20), College Campus (7.15)</td></tr>
+                <tr><td>10</td><td>Royapettah</td><td>Royapettah (6.05), Mylapore (6.10), Nungambakkam (6.15), College Campus (7.15)</td></tr>
+                <tr><td>11</td><td>Korattur</td><td>Korattur (6.20), Anna Nagar (6.25), Koyambedu (6.30), College Campus (7.15)</td></tr>
+                <tr><td>12</td><td>Avadi</td><td>Anna Stachu (5.55), Thirumullaivoyal (5.57), Ambattur OT (6.00), Dunlop Ambethgar Stachu (6.02), Collector Nagar (6.15), Jai Nagar (6.25), College Campus (7.15)</td></tr>
+                <tr><td>13</td><td>West Mambalam</td><td>Ashok Nagar Nagathamman Koil (6.35), G.R.T. School 7th Avenue (6.40), Kamatchi Street Signal (6.43), Blue Tank (6.50), College Campus (7.15)</td></tr>
+                <tr><td>14</td><td>K.K. Nagar</td><td>K.K. Nagar (6.10), Vadapalani (6.15), Adyar (6.20), College Campus (7.15)</td></tr>
+                <tr><td>15</td><td>Vadapalani</td><td>Vadapalani (6.00), Kodambakkam (6.05), K.K. Nagar (6.10), College Campus (7.15)</td></tr>
+                <tr><td>16</td><td>Kotturpuram</td><td>Kotturpuram (6.20), Adyar (6.25), Thiruvanmiyur (6.30), College Campus (7.15)</td></tr>
+                <tr><td>17</td><td>Thiruvanmiyur</td><td>Thiruvanmiyur (6.10), OMR (6.15), Velachery (6.20), College Campus (7.15)</td></tr>
+                <tr><td>18</td><td>Mylapore</td><td>Mylapore (6.15), Royapettah (6.20), Nungambakkam (6.25), College Campus (7.15)</td></tr>
+                <tr><td>19</td><td>Alwarpet</td><td>Alwarpet (6.25), Nungambakkam (6.30), College Campus (7.15)</td></tr>
+                <tr><td>20</td><td>Taramani</td><td>Taramani (6.15), Velachery (6.20), OMR (6.25), College Campus (7.15)</td></tr>
+                <tr><td>21</td><td>Perungudi</td><td>Perungudi (6.10), OMR (6.15), Velachery (6.20), College Campus (7.15)</td></tr>
+                <tr><td>22</td><td>R A Puram</td><td>R A Puram (6.20), Nungambakkam (6.25), College Campus (7.15)</td></tr>
+                <tr><td>23</td><td>Gopalapuram</td><td>Gopalapuram (6.15), Egmore (6.20), College Campus (7.15)</td></tr>
+                <tr><td>24</td><td>Mount Road</td><td>Mount Road (6.05), Nungambakkam (6.15), College Campus (7.15)</td></tr>
+                <tr><td>25</td><td>Kodambakkam</td><td>Kodambakkam (6.20), Ashok Nagar (6.25), College Campus (7.15)</td></tr>
+                <tr><td>26</td><td>Thousand Lights</td><td>Thousand Lights (6.10), Royapettah (6.15), College Campus (7.15)</td></tr>
+                <tr><td>27</td><td>Omar</td><td>Omar (6.15), Adyar (6.20), College Campus (7.15)</td></tr>
+                <tr><td>28</td><td>Adambakkam</td><td>Adambakkam (6.10), Alandur (6.15), College Campus (7.15)</td></tr>
+                <tr><td>29</td><td>Shenoy Nagar</td><td>Shenoy Nagar (6.20), Egmore (6.25), College Campus (7.15)</td></tr>
+                <tr><td>30</td><td>Kodambakkam</td><td>Kodambakkam (6.00), Ashok Nagar (6.10), College Campus (7.15)</td></tr>
+                <tr><td>31</td><td>Chepauk</td><td>Chepauk (6.10), Mylapore (6.15), College Campus (7.15)</td></tr>
+                <tr><td>32</td><td>Alwarpet</td><td>Alwarpet (6.20), Nungambakkam (6.30), College Campus (7.15)</td></tr>
+                <tr><td>33</td><td>Wellington</td><td>Wellington (6.15), Thiruvankarai (6.20), Village (6.25), Gandhi Statue (6.27), Kasimedu (6.30), Poonamallee (6.35), College Campus (7.15)</td></tr>
+                <tr><td>34</td><td>Singara (K.K. Nagar)</td><td>Singara (6.10), Udayam (6.15), Nallore (6.18), Vanniar Street (6.20), Railway Station (6.25), Bus Stand (6.30), College Campus (7.15)</td></tr>
+                <tr><td>35</td><td>Tambaram</td><td>Tambaram (6.30), Mudichur (6.32), Sembakkam (6.35), Irumbuliyur (6.40), Mogappair (6.45), College Campus (7.15)</td></tr>
+                <tr><td>36</td><td>Kodambakkam</td><td>Kodambakkam (6.15), Asokan (6.20), Mahindra (6.25), K.K. Nagar (6.30), Avadi (6.35), College Campus (7.15)</td></tr>
+                <tr><td>37</td><td>K.K. Nagar (West)</td><td>K.K. Nagar (6.05), Nandanam (6.10), Vadapalani (6.15), Kolathur (6.20), Adambakkam (6.25), College Campus (7.15)</td></tr>
+                <tr><td>38</td><td>Chepauk</td><td>Chepauk (6.20), Mylapore (6.25), Nungambakkam (6.30), College Campus (7.15)</td></tr>
+                <tr><td>39</td><td>Kotturpuram</td><td>Kotturpuram (6.15), Thiruvanmiyur (6.20), Velachery (6.25), College Campus (7.15)</td></tr>
+                <tr><td>40</td><td>Madipakkam</td><td>Madipakkam (6.10), Pallikaranai (6.15), Velachery (6.20), College Campus (7.15)</td></tr>
+                <tr><td>41</td><td>Tidel Park</td><td>Tidel Park (6.05), OMR (6.10), Thiruvanmiyur (6.15), College Campus (7.15)</td></tr>
+                <tr><td>42</td><td>St. Thomas Mount</td><td>St. Thomas Mount (6.15), Alandur (6.20), Adambakkam (6.25), College Campus (7.15)</td></tr>
+                <tr><td>43</td><td>West Mambalam</td><td>West Mambalam (6.20), Ashok Nagar (6.25), College Campus (7.15)</td></tr>
+                <tr><td>44</td><td>Chembur</td><td>Chembur (6.10), Thane (6.15), Andheri (6.20), College Campus (7.15)</td></tr>
+                <tr><td>45</td><td>Sholinganallur</td><td>Sholinganallur (6.00), OMR (6.05), Velachery (6.10), College Campus (7.15)</td></tr>
+                <tr><td>46</td><td>R.A. Puram</td><td>R.A. Puram (6.30), Nungambakkam (6.35), College Campus (7.15)</td></tr>
+                <tr><td>47</td><td>Kotturpuram</td><td>Kotturpuram (6.10), Adyar (6.15), Thiruvanmiyur (6.20), College Campus (7.15)</td></tr>
+                <tr><td>48</td><td>Gopalapuram</td><td>Gopalapuram (6.05), Egmore (6.10), College Campus (7.15)</td></tr>
+                <tr><td>49</td><td>Adyar</td><td>Adyar (6.15), Thiruvanmiyur (6.20), Velachery (6.25), College Campus (7.15)</td></tr>
+                <tr><td>50</td><td>Mount Road</td><td>Mount Road (6.25), Teynampet (6.30), College Campus (7.15)</td></tr>
+                <tr><td>51</td><td>Vepery</td><td>Vepery (6.10), Egmore (6.15), College Campus (7.15)</td></tr>
+                <tr><td>52</td><td>Mambalam</td><td>Mambalam (6.20), Ashok Nagar (6.25), College Campus (7.15)</td></tr>
+                <tr><td>53</td><td>Royapettah</td><td>Royapettah (6.15), Mylapore (6.20), College Campus (7.15)</td></tr>
+                <tr><td>54</td><td>Thiruvanmiyur</td><td>Thiruvanmiyur (6.10), OMR (6.15), Velachery (6.20), College Campus (7.15)</td></tr>
+                <tr><td>55</td><td>Perambur</td><td>Perambur (6.20), Villivakkam (6.25), Tondiarpet (6.30), College Campus (7.15)</td></tr>
+                <tr><td>56</td><td>Thousand Lights</td><td>Thousand Lights (6.05), Royapettah (6.10), College Campus (7.15)</td></tr>
+                <tr><td>57</td><td>Chennai Central</td><td>Chennai Central (6.00), Periamet (6.10), Egmore (6.15), College Campus (7.15)</td></tr>
+                <tr><td>58</td><td>Vadapalani</td><td>Vadapalani (6.05), Kodambakkam (6.10), K.K. Nagar (6.15), College Campus (7.15)</td></tr>
+                <tr><td>59</td><td>West Mambalam</td><td>West Mambalam (6.30), Ashok Nagar (6.35), College Campus (7.15)</td></tr>
+                <tr><td>60</td><td>Tambaram</td><td>Tambaram (6.20), Mudichur (6.25), College Campus (7.15)</td></tr>
+                <tr><td>61</td><td>Gopalapuram</td><td>Gopalapuram (6.05), Egmore (6.10), College Campus (7.15)</td></tr>
+                <tr><td>62</td><td>Shenoy Nagar</td><td>Shenoy Nagar (6.20), Egmore (6.25), College Campus (7.15)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'main.html';
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            var input = this.value.toLowerCase();
+            var table = document.getElementById('busTable');
+            var rows = table.getElementsByTagName('tr');
+
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName('td');
+                var found = false;
+                for (var j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        found = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = found ? '' : 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
